@@ -37,4 +37,13 @@ class Shoe extends Model
     {
         return $this->belongsTo(Category::class, 'category_id');
     }
+
+    public function photos()
+    {
+        return $this->hasMany(ShoePhoto::class);
+    }
+    public function sizes()
+    {
+        return $this->hasMany(ShoeSize::class);
+    }
 }
