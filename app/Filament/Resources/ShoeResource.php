@@ -71,36 +71,38 @@ class ShoeResource extends Resource
                             ]),
                     ]),
 
-                    Fieldset::make('Additional')
-                        ->schema([
-                            Textarea::make('about')
-                                ->required(),
-                            Select::make('is_popular')
+                Fieldset::make('Additional')
+                    ->schema([
+                        Textarea::make('about')
+                            ->required(),
+                        Select::make('is_popular')
+                            ->label('Is Popular')
                             ->options([
-                                'true' => 'Popular',
-                                'false' => 'Not Popular',
+                                1 => 'Yes',
+                                0 => 'No',
                             ])
+                            ->default(0)
                             ->required(),
 
-                            Select::make('category_id')
-                                ->relationship('category','name')
-                                ->searchable()
-                                ->preload()
-                                ->required(),
+                        Select::make('category_id')
+                            ->relationship('category', 'name')
+                            ->searchable()
+                            ->preload()
+                            ->required(),
 
-                            Select::make('brand_id')
-                                ->relationship('brand','name')
-                                ->searchable()
-                                ->preload()
-                                ->required(),
+                        Select::make('brand_id')
+                            ->relationship('brand', 'name')
+                            ->searchable()
+                            ->preload()
+                            ->required(),
 
-                            TextInput::make('stock')
-                                ->label('Stock')
-                                ->required()
-                                ->placeholder('Enter the stock of the shoe')
-                                ->prefix('Qty')
-                                ->numeric(),
-                        ]),
+                        TextInput::make('stock')
+                            ->label('Stock')
+                            ->required()
+                            ->placeholder('Enter the stock of the shoe')
+                            ->prefix('Qty')
+                            ->numeric(),
+                    ]),
             ]);
     }
 

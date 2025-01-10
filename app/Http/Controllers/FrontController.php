@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Shoe;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Services\FrontService;
 
 class FrontController extends Controller
 {
