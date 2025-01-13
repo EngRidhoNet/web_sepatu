@@ -19,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
 
          $this->app->singleton(\App\Repositories\Contracts\OrderRepositoryInterface::class, \App\Repositories\OrderRepository::class);
 
-         $this->app->singleton(\App\Repositories\Contracts\PromoCodeRepositoryInterface::class, PromoCodeRepository::class);
+         $this->app->singleton(\App\Repositories\Contracts\PromoCodeRepositoryInterface::class, \App\Repositories\PromoCodeRepository::class);
     }
 
     /**

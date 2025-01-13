@@ -17,16 +17,18 @@ class OrderService
     protected $orderRepository;
     protected $shoeRepository;
 
-    public function __construct(PromoCodeRepositoryInterface $promoCodeRepositoryInterface,
-    CategoryRepositoryInterface $categoryRepositoryInterface,
-    OrderRepositoryInterface $orderRepositoryInterface,
-    ShoeRepositoryInterface $shoeRepositoryInterface)
-    {
-        $this->categoryRepository = $categoryRepositoryInterface;
-        $this->promoCodeRepository = $promoCodeRepositoryInterface;
-        $this->orderRepository = $orderRepositoryInterface;
-        $this->shoeRepository = $shoeRepositoryInterface;
+    public function __construct(
+        PromoCodeRepositoryInterface $promoCodeRepository,
+        CategoryRepositoryInterface $categoryRepository,
+        OrderRepositoryInterface $orderRepository,
+        ShoeRepositoryInterface $shoeRepository
+    ) {
+        $this->categoryRepository = $categoryRepository;
+        $this->promoCodeRepository = $promoCodeRepository;
+        $this->orderRepository = $orderRepository;
+        $this->shoeRepository = $shoeRepository;
     }
+
 
     // service untuk menyimpan data ke dalam session
     public function beginOrder(array $data)

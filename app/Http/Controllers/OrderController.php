@@ -30,6 +30,8 @@ class OrderController extends Controller
     public function booking()
     {
         $data  = $this->orderService->getOrderDetails();
+        dd($data);
+
         return view('order.order', $data);
     }
 
