@@ -3,7 +3,7 @@
         <img id="main-thumbnail" src="{{ Storage::url($shoe->photos()->latest()->first()->photo) }}"
             class="w-full h-full object-contain object-center" alt="thumbnail">
     </div>
-    <form  class="flex flex-col gap-5">
+    <form wire:submit.prevent="submit" class="flex flex-col gap-5">
         <div class="flex flex-col rounded-[20px] p-4 mx-4 pb-5 gap-5 bg-white">
             <div id="info" class="flex items-center justify-between">
                 <div class="flex flex-col space-y-2">
@@ -98,7 +98,7 @@
             </div>
             <div class="flex items-center justify-between">
                 <p class="font-semibold">Discount</p>
-                <p id="discount" class="font-bold text-[#FF1943]">- Rp {{$discount}}</p>
+                <p id="discount" class="font-bold text-[#FF1943]">- Rp {{ number_format($discount, 0, ',', '.') }}</p>
             </div>
         </div>
         <div id="bottom-nav" class="relative flex h-[100px] w-full shrink-0 mt-5">
@@ -110,7 +110,7 @@
                             Grand Total
                         </p>
                     </div>
-                    <button type="submit" class="rounded-full p-[12px_20px] bg-[#C5F277] font-bold">
+                    <button class="rounded-full p-[12px_20px] bg-[#C5F277] font-bold">
                         Continue
                     </button>
                 </div>
