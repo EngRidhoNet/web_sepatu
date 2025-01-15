@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Shoe;
 use Illuminate\Http\Request;
 use App\Services\OrderService;
-use App\Http\Requests\StoreOrderRequest;
-use App\Http\Requests\StoreCustomerDataRequest;
-use App\Http\Requests\StorePaymentRequest;
 use App\Models\ProductTransaction;
+use App\Http\Requests\StoreOrderRequest;
+use App\Http\Requests\StorePaymentRequest;
+use App\Http\Requests\StoreCheckBookingRequest;
+use App\Http\Requests\StoreCustomerDataRequest;
 
 class OrderController extends Controller
 {
@@ -37,7 +38,6 @@ class OrderController extends Controller
 
     public function customerData() {
         $data = $this->orderService->getOrderDetails();
-        dd($data);
         return view('order.customer_data', $data);
     }
 
@@ -57,6 +57,7 @@ class OrderController extends Controller
     {
         $validated = $request->validated();
         $productTransactionId = $this->orderService->paymentConfirm($validated);
+        // dd($productTransactionId);
 
         if($productTransactionId) {
             return redirect()->route('front.order_finished', $productTransactionId);
@@ -65,9 +66,29 @@ class OrderController extends Controller
         return redirect()->route('front.index')->withErrors(['error'=>'Payment failed.pleaser try again']);
     }
 
-    public function orderFinished(ProductTransaction $productTransactionId)
+    public function orderFinished(ProductTransaction $productTransaction)
     {
-        dd($productTransactionId);
+        // dd($productTransactionId);
+        return view ('order.order_finished', compact('productTransaction'));
+
+    }
+
+    public function checkBooking()
+    {
+        return view('order.my_order');
+    }
+
+    public function checkBookingDetails(StoreCheckBookingRequest $request)
+    {
+        $validated = $request->validated();
+
+        $orderDetails = $this->orderService->getMyOrderDetails($validated);
+
+        if($orderDetails) {
+            return view('order.my_order_details', compact('orderDetails'));
+        }
+
+        return redirect()->route('front.check_booking')->withErrors(['error'=>'No booking found']);
     }
 
 }

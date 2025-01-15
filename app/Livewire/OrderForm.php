@@ -122,8 +122,7 @@ class OrderForm extends Component
     protected function gatherBookingData(array $validatedData)
     {
         return [
-
-            'shoe_id' => $this->shoe->id,
+            // 'shoe_id' => $this->shoe->id,
             'quantity' => $this->quantity,
             'sub_total_amount' => $this->subTotalAmount,
             'promo_code_id' => $this->promoCodeId,
@@ -133,8 +132,8 @@ class OrderForm extends Component
             'email' => $validatedData['email'],
             'discount' => $this->discount,
             'promo_code' => $this->promoCode,
-            'shoe_size' => $this->orderData['shoe_size'],
-            'size_id' => $this->orderData['size_id'],
+            // 'shoe_size' => $this->orderData['shoe_size'],
+            // 'size_id' => $this->orderData['size_id'],
         ];
     }
 

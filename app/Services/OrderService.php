@@ -7,8 +7,8 @@ use App\Repositories\Contracts\OrderRepositoryInterface;
 use App\Repositories\Contracts\PromoCodeRepositoryInterface;
 use App\Repositories\Contracts\CategoryRepositoryInterface;
 use App\Repositories\Contracts\ShoeRepositoryInterface;
-use illuminate\Support\Facades\DB;
-use illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class OrderService
 {
@@ -42,6 +42,11 @@ class OrderService
         $this->orderRepository->saveToSession($orderData);
     }
 
+    public function getMyOrderDetails(array $validated)
+    {
+        return $this->orderRepository->findByTrxIdAndPhoneNumber($validated['booking_trx_id'], $validated['phone']);
+    }
+
     public function getOrderDetails()
     {
         $orderData = $this->orderRepository->getOrderDataFromSession();
@@ -57,6 +62,7 @@ class OrderService
 
         $orderData['sub_total_amount'] = $subTotalAmount;
         $orderData['total_tax'] = $totalTax;
+        // $orderData['grand_total_amount'] = $grandTotalAmount;
 
         return compact('orderData', 'shoe');
     }
@@ -70,6 +76,7 @@ class OrderService
             $discount = $promo->discount_amount;
             $grandTotalAmount = $subTotalAmount - $discount;
             $promoCodeId = $promo->id;
+
             return ['discount' => $discount, 'grand_total_amount' => $grandTotalAmount, 'promo_code_id' => $promoCodeId];
         }
 
@@ -92,13 +99,13 @@ class OrderService
 
         $productTransactionId = null;
 
-        try
-        {
-            DB::transaction(function ()use($validated, $productTransactionId, $orderData) {
-                if(isset($validated['proof'])){
+        try {
+            DB::transaction(function () use (&$productTransactionId, $validated, $orderData) {
+                if (isset($validated['proof'])) {
                     $proofPath = $validated['proof']->store('proofs', 'public');
                     $validated['proof'] = $proofPath;
                 }
+
                 $validated['name'] = $orderData['name'];
                 $validated['email'] = $orderData['email'];
                 $validated['phone'] = $orderData['phone'];
@@ -126,6 +133,7 @@ class OrderService
 
         return $productTransactionId;
     }
+
 
 
 }
