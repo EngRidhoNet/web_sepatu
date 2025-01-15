@@ -30,6 +30,6 @@ class ShoeRepository implements ShoeRepositoryInterface
 
     public function searchByName (string $keyword)
     {
-        return Shoe::where('name','like',"%$keyword%")->get();
+        return Shoe::where('name','LIKE',"%$keyword%")->get();
     }
 }

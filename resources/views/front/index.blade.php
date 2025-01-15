@@ -21,10 +21,10 @@
         </div>
 
         <!-- Search Form -->
-        <form class="flex justify-between items-center mx-4 md:mx-6 lg:mx-8 md:max-w-2xl lg:max-w-3xl md:mx-auto">
+        <form action="{{ route('front.search') }}" class="flex justify-between items-center mx-4 md:mx-6 lg:mx-8 md:max-w-2xl lg:max-w-3xl md:mx-auto">
             <div class="relative flex items-center w-full rounded-l-full px-[14px] gap-[10px] bg-white transition-all duration-300 focus-within:ring-2 focus-within:ring-[#FFC700]">
                 <img src="{{asset('assets/images/icons/search-normal.svg')}}" class="w-6 h-6 lg:w-7 lg:h-7" alt="icon">
-                <input type="text" class="w-full py-[14px] lg:py-[16px] appearance-none bg-white outline-none font-semibold text-base lg:text-lg placeholder:font-normal placeholder:text-[#878785]" placeholder="Search product...">
+                <input name="keyword" type="text" class="w-full py-[14px] lg:py-[16px] appearance-none bg-white outline-none font-semibold text-base lg:text-lg placeholder:font-normal placeholder:text-[#878785]" placeholder="Search product...">
             </div>
             <button type="submit" class="h-full rounded-r-full py-[14px] lg:py-[16px] px-5 lg:px-7 bg-[#C5F277]">
                 <span class="font-semibold text-base lg:text-lg">Explore</span>
