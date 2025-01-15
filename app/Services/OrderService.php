@@ -58,7 +58,7 @@ class OrderService
         $taxRate = 0.12;
         $totalTax = $subTotalAmount * $taxRate;
 
-        $grandTotalAmount = $subTotalAmount + $totalTax;
+        // $grandTotalAmount = $subTotalAmount + $totalTax;
 
         $orderData['sub_total_amount'] = $subTotalAmount;
         $orderData['total_tax'] = $totalTax;
@@ -105,7 +105,7 @@ class OrderService
                     $proofPath = $validated['proof']->store('proofs', 'public');
                     $validated['proof'] = $proofPath;
                 }
-
+                // $total = $orderData['grand_total_amount'] + $orderData['total_tax'];
                 $validated['name'] = $orderData['name'];
                 $validated['email'] = $orderData['email'];
                 $validated['phone'] = $orderData['phone'];
@@ -124,6 +124,8 @@ class OrderService
 
                 $newTransaction = $this->orderRepository->createTransaction($validated);
                 $productTransactionId = $newTransaction->id;
+
+                $this->orderRepository->clearSession();
             });
         } catch (\Exception $e) {
             Log::error('Payment confirmation failed: ' . $e->getMessage());

@@ -6,7 +6,7 @@ use App\Http\Controllers\OrderController;
 
 Route::get('/', [FrontController::class, 'index'])->name('front.index');
 
-Route::get('/browse/{category:slug}', [FrontController::class, 'browseCategory'])->name('front.category');
+Route::get('/browse/{category:slug}', [FrontController::class, 'category'])->name('front.category');
 
 Route::get('/details/{shoe:slug}', [FrontController::class, 'details'])->name('front.details');
 

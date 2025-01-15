@@ -37,4 +37,9 @@ class OrderRepository implements OrderRepositoryInterface
     {
         return session()->get('order_data');
     }
+
+    public function clearSession()
+    {
+        Session::forget('order_data');
+    }
 }

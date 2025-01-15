@@ -152,7 +152,7 @@
                             <span class="font-bold text-sm leading-[21px]">Browse</span>
                         </div>
                     </a>
-                    <a href="check-booking.html" class="mx-auto w-full">
+                    <a href="check-booking" class="mx-auto w-full">
                         <img src="{{asset('assets/images/icons/bag-2-white.svg')}}" class="w-6 h-6" alt="icon">
                     </a>
                     <a href="#" class="mx-auto w-full">
@@ -167,10 +167,10 @@
 
         <!-- Desktop Navigation -->
         <nav class="hidden lg:flex fixed top-0 right-0 h-screen w-20 bg-[#2A2A2A] flex-col items-center justify-center gap-8 z-40">
-            <a href="index.html" class="p-3 rounded-full bg-[#C5F277]">
+            <a href="{{ route('front.index') }}" class="p-3 rounded-full bg-[#C5F277]">
                 <img src="{{asset('assets/images/icons/3dcube.svg')}}" class="w-8 h-8" alt="icon">
             </a>
-            <a href="check-booking.html" class="p-3">
+            <a href="{{ route('front.check_booking') }}" class="p-3">
                 <img src="{{asset('assets/images/icons/bag-2-white.svg')}}" class="w-8 h-8" alt="icon">
             </a>
             <a href="#" class="p-3">
